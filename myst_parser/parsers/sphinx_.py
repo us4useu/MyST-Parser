@@ -51,6 +51,7 @@ class MystParser(SphinxParser):
     def set_application(self, app: Sphinx) -> None:
         super().set_application(app)
         app.add_latex_package("ulem", "normalem")
+        print("ADDED ULEM PACKAGE")
 
     def parse(self, inputstring: str, document: nodes.document) -> None:
         """Parse source text.
