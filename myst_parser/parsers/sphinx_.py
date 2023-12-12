@@ -62,6 +62,7 @@ class MystParser(SphinxParser):
         """
         # get the global config
         config: MdParserConfig = document.settings.env.myst_config
+        print("RUNNING SPHINX PARSER")
 
         # update the global config with the file-level config
         try:
