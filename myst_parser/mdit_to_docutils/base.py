@@ -1400,15 +1400,10 @@ class DocutilsRenderer(RendererProtocol):
 
     def render_s(self, token: SyntaxTreeNode) -> None:
         """Render a strikethrough token."""
-        # TODO strikethrough not currently directly supported in docutils
-        self.create_warning(
-            "Strikethrough is currently only supported in HTML output",
-            MystWarnings.STRIKETHROUGH,
-            line=token_line(token, 0),
-            append_to=self.current_node,
-        )
         self.current_node.append(nodes.raw("", "<s>", format="html"))
+        self.current_node.append(nodes.raw("", r"\sout{", format="latex"))
         self.render_children(token)
+        self.current_node.append(nodes.raw("", r"}", format="latex"))
         self.current_node.append(nodes.raw("", "</s>", format="html"))
 
     def render_math_inline(self, token: SyntaxTreeNode) -> None:

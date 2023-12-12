@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from docutils import nodes
 from docutils.parsers.rst import Parser as RstParser
+from sphinx.application import Sphinx
 from sphinx.parsers import Parser as SphinxParser
 from sphinx.util import logging
 
@@ -46,6 +47,10 @@ class MystParser(SphinxParser):
 
     def get_transforms(self):
         return super().get_transforms() + [ResolveAnchorIds]
+
+    def set_application(self, app: Sphinx) -> None:
+        super().set_application(app)
+        app.add_latex_package("ulem", "normalem")
 
     def parse(self, inputstring: str, document: nodes.document) -> None:
         """Parse source text.
