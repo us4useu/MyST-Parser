@@ -1400,6 +1400,7 @@ class DocutilsRenderer(RendererProtocol):
 
     def render_s(self, token: SyntaxTreeNode) -> None:
         """Render a strikethrough token."""
+        print("RENDERING STRIKETHROUGH")
         self.current_node.append(nodes.raw("", "<s>", format="html"))
         self.current_node.append(nodes.raw("", r"\sout{", format="latex"))
         self.render_children(token)
